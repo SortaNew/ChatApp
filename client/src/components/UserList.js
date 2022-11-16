@@ -1,9 +1,16 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../App'
 
 function UserList({ user }) {
 
     const users = useContext(UserContext)
+    const [interests, setInterests] = useState([])
+
+    useEffect(() => {
+        fetch("/interests")
+          .then((r) => r.json())
+          .then((data) => setInterests(data));
+    }, []);
 
     function handleAdd(friendId) {
         fetch("/friendships", {
@@ -19,11 +26,12 @@ function UserList({ user }) {
         })
             .then((r) => r.json())
     }
-
+    
+    
     const randomUsers = users.map((u) => {
         return (
             <div key={u.id}>
-                {u.username}
+                {u.username} - {u.interests.map((inter) => inter.name)}
                 <button onClick={() => handleAdd(u.id)}>Add</button>
             </div>
         )

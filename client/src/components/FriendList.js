@@ -1,19 +1,26 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
-function FriendList(){ 
-
-const [users, setUsers] = useState([])
+function FriendList({ user }) {
+    
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
         fetch("/users")
-          .then((r) => r.json())
-          .then((data) => setUsers(data));
+            .then((r) => r.json())
+            .then((data) => setUsers(data));
     }, []);
+    
+    if(!user){return "loading..."}
 
-    const user = users.map((u) => {return <div key={u.id}>{u.username} <button>x</button></div>})
+    const friends = users.filter((u) => {
+        return (
+            user.friendships.map(fr => fr.friend_id).includes(u.id)
+        )
+    })
+    const userFriends = friends.map((u) => { return <div key={u.id}> {u.username} </div> })
 
     return (
-    <>{user}</>
+        <>{userFriends}</>
     )
 }
 

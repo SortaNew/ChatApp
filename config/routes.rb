@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   post "friendships", to: "friendships#create"
   get "friendships", to: "friendships#index"
+  post "interests", to: "interests#create"
+  get "interests", to: "interests#index"
   mount ActionCable.server => '/cable'
-  get "chatrooms", to: "chatrooms#index"
+  
 end

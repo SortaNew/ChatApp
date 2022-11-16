@@ -39,7 +39,7 @@ function App() {
       <Route path="/" element={<LogIn user={user} onLogin={setUser} />} />
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/ChatRoom" element={<ChatRoom user={user} />} />
-      <Route path="/FriendList" element={<FriendList />} />
+      <Route path="/FriendList" element={<FriendList user={user}/>} />
       <Route path="/UserList" element={<UserList user={user}/>} />
       <Route path="/EditUser" element={<EditUser user={user} setUser={setUser}/>} />
     </Routes>
