@@ -14,6 +14,8 @@ function Navbar({ user, onLogout }) {
         <NavLink to="/SignUp">Sign Up</NavLink>&nbsp;
         <NavLink to="/Chatroom">Chat Room</NavLink>&nbsp;
         <NavLink to="/Friendlist">Friend List</NavLink>&nbsp;
+        <NavLink to="/Userlist">User List</NavLink>&nbsp;
+        <NavLink to="/EditUser">Edit/Delete User</NavLink>&nbsp;
         {user ? <a>Welcome, {user.username}!</a> : ""}&nbsp;        
         <button onClick={handleLogout}>Logout</button>
       </header>

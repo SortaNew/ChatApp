@@ -24,7 +24,7 @@ function ChatRoom({user}) {
       {
         received: (data) => {
           setMessages(oldMessages => [...oldMessages, data])
-          console.log(data)
+          console.log("bladasf", data)
         }
       })
 
@@ -38,17 +38,23 @@ function ChatRoom({user}) {
 
   function handleSubmit(e) {
     e.preventDefault()
+    if (user){
     channel.send({content: messageInput})
     setMessageInput('')
+    }
   }
-
+  console.log(messages)
   return (
     <div>
 
       <h3>Cat Chat Room:</h3>
 
-      {messages.map((message, i) => <p key={i}>{message.content} - {message.created_at}</p>)}
-
+      {messages.map((message, i) => {
+        if(message?.user?.username)
+        return(
+      <p key={i}>{message.user.username}: {message.content} - {message.created_at}</p>)}
+      )  
+      }
       <form onSubmit={handleSubmit}>
 
         <input type="text" value={messageInput} onChange={handleMessageInputChange} />

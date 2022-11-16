@@ -7,6 +7,7 @@ function LogIn({user, onLogin}){
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (!user){
         fetch("/login", {
             method: "POST",
             headers: {
@@ -17,10 +18,16 @@ function LogIn({user, onLogin}){
         .then((r) => { 
             if (r.ok) {
                 r.json()
-                .then((user) => onLogin(user))
-                alert(!user.username ? user.username : "Already logged in.")
+                .then((data) => {
+                    onLogin(data)
+                    alert(data.username)
+                })
             }})
-      }
+        }
+        else {
+            alert("You're already logged in, or you're an impostor.")
+        }
+    }
     
     return(
         <form onSubmit={handleSubmit}>

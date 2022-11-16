@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   delete "/logout", to: "sessions#destroy"
   resources :messages, only: [:create]
+  post "friendships", to: "friendships#create"
+  get "friendships", to: "friendships#index"
   mount ActionCable.server => '/cable'
+  get "chatrooms", to: "chatrooms#index"
 end

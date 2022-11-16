@@ -10,7 +10,7 @@ const [users, setUsers] = useState([])
           .then((data) => setUsers(data));
     }, []);
 
-    const user = users.map((u, i) => {return <div key={i}>{u.username}</div>})
+    const user = users.map((u) => {return <div key={u.id}>{u.username} <button>x</button></div>})
 
     return (
     <>{user}</>
